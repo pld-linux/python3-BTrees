@@ -10,12 +10,14 @@
 
 %define 	module	BTrees
 %define		pypi_name	%{module}
+# Keep strict dependencies as build process relays on *.h files from python-persistent
+%define		persistent_ver	4.2.4.2
 
 Summary:	Scalable persistent object containers
 Summary(pl.UTF-8):	Skalowalne trwałe kontenery dla obiektów
 Name:		python-%{module}
 Version:	4.4.1
-Release:	1
+Release:	2
 License:	ZPL 2.1
 Group:		Libraries/Python
 #Source0:	https://files.pythonhosted.org/packages/source/B/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
@@ -28,16 +30,20 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with python2}
 BuildRequires:	python-devel
+BuildRequires:	python-persistent = %{persistent_ver}
 #BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
 BuildRequires:	python3-devel
+BuildRequires:	python3-persistent = %{persistent_ver}
 #BuildRequires:	python3-setuptools
 %endif
+
 # when using /usr/bin/env or other in-place substitutions
 #BuildRequires:	sed >= 4.0
 # replace with other requires if defined in setup.py
 Requires:	python-modules
+Requires:	python-persistent = %{persistent_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -49,6 +55,7 @@ Summary:	-
 Summary(pl.UTF-8):	-
 Group:		Libraries/Python
 Requires:	python3-modules
+Requires:	python3-persistent = %{persistent_ver}
 
 %description -n python3-%{module}
 
@@ -103,6 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGES.rst README.rst
 %dir %{py_sitedir}/%{module}
 %{py_sitedir}/%{module}/*.py[co]
+%{py_sitedir}/%{module}/*.[ch]
 %attr(755,root,root) %{py_sitedir}/%{module}/*.so
 %{py_sitedir}/%{module}-%{version}-py*.egg-info
 %endif
@@ -113,6 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGES.rst README.rst
 %dir %{py3_sitedir}/%{module}
 %{py3_sitedir}/%{module}/*.py
+%{py3_sitedir}/%{module}/*.[ch]
 %attr(755,root,root) %{py3_sitedir}/%{module}/*.so
 %{py3_sitedir}/%{module}/__pycache__
 %{py3_sitedir}/%{module}-%{version}-py*.egg-info
