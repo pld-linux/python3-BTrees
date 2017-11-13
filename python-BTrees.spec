@@ -17,7 +17,7 @@ Summary:	Scalable persistent object containers
 Summary(pl.UTF-8):	Skalowalne trwałe kontenery dla obiektów
 Name:		python-%{module}
 Version:	4.4.1
-Release:	2
+Release:	3
 License:	ZPL 2.1
 Group:		Libraries/Python
 #Source0:	https://files.pythonhosted.org/packages/source/B/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
@@ -32,11 +32,13 @@ BuildRequires:	rpmbuild(macros) >= 1.714
 BuildRequires:	python-devel
 BuildRequires:	python-persistent = %{persistent_ver}
 #BuildRequires:	python-setuptools
+BuildRequires:	python-transaction
 %endif
 %if %{with python3}
 BuildRequires:	python3-devel
 BuildRequires:	python3-persistent = %{persistent_ver}
 #BuildRequires:	python3-setuptools
+BuildRequires:	python3-transaction
 %endif
 
 # when using /usr/bin/env or other in-place substitutions
@@ -44,6 +46,7 @@ BuildRequires:	python3-persistent = %{persistent_ver}
 # replace with other requires if defined in setup.py
 Requires:	python-modules
 Requires:	python-persistent = %{persistent_ver}
+Requires:	python-transaction
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -56,6 +59,7 @@ Summary(pl.UTF-8):	-
 Group:		Libraries/Python
 Requires:	python3-modules
 Requires:	python3-persistent = %{persistent_ver}
+Requires:	python3-transaction
 
 %description -n python3-%{module}
 
