@@ -10,14 +10,12 @@
 
 %define 	module	BTrees
 %define		pypi_name	%{module}
-# Keep strict dependencies as build process relays on *.h files from python-persistent
-%define		persistent_ver	4.2.4.2
 
 Summary:	Scalable persistent object containers
 Summary(pl.UTF-8):	Skalowalne trwałe kontenery dla obiektów
 Name:		python-%{module}
 Version:	4.4.1
-Release:	5
+Release:	6
 License:	ZPL 2.1
 Group:		Libraries/Python
 #Source0:	https://files.pythonhosted.org/packages/source/B/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
@@ -30,13 +28,13 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with python2}
 BuildRequires:	python-devel
-BuildRequires:	python-persistent = %{persistent_ver}
+BuildRequires:	python-persistent >= 4.0.4
 #BuildRequires:	python-setuptools
 BuildRequires:	python-transaction
 %endif
 %if %{with python3}
 BuildRequires:	python3-devel
-BuildRequires:	python3-persistent = %{persistent_ver}
+BuildRequires:	python3-persistent >= 4.0.4
 #BuildRequires:	python3-setuptools
 BuildRequires:	python3-transaction
 %endif
@@ -45,7 +43,7 @@ BuildRequires:	python3-transaction
 #BuildRequires:	sed >= 4.0
 # replace with other requires if defined in setup.py
 Requires:	python-modules
-Requires:	python-persistent = %{persistent_ver}
+%requires_eq	python-persistent
 Requires:	python-transaction
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -58,7 +56,7 @@ Summary:	-
 Summary(pl.UTF-8):	-
 Group:		Libraries/Python
 Requires:	python3-modules
-Requires:	python3-persistent = %{persistent_ver}
+%requires_eq	python3-persistent
 Requires:	python3-transaction
 
 %description -n python3-%{module}
