@@ -15,7 +15,7 @@ Summary:	Scalable persistent object containers
 Summary(pl.UTF-8):	Skalowalne trwałe kontenery dla obiektów
 Name:		python-%{module}
 Version:	4.4.1
-Release:	10
+Release:	11
 License:	ZPL 2.1
 Group:		Libraries/Python
 #Source0:	https://files.pythonhosted.org/packages/source/B/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
