@@ -11,14 +11,14 @@
 Summary:	Scalable persistent object containers
 Summary(pl.UTF-8):	Skalowalne trwałe kontenery dla obiektów
 Name:		python-%{module}
-# >= 4.8.0 requires zope.interface >= 5.0.0
-Version:	4.7.2
+# keep 4.x here for python2 support
+Version:	4.11.3
 Release:	1
 License:	ZPL v2.1
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/BTrees/
 Source0:	https://files.pythonhosted.org/packages/source/B/BTrees/%{module}-%{version}.tar.gz
-# Source0-md5:	392ef0942c648fb66f2ee86da8479345
+# Source0-md5:	626347f5d1f9bce09765f58e55b51285
 URL:		https://pypi.org/project/BTrees/
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
@@ -30,7 +30,7 @@ BuildRequires:	python-setuptools
 #BuildRequires:	python-ZODB
 BuildRequires:	python-persistent >= 4.4.3
 BuildRequires:	python-transaction
-BuildRequires:	python-zope.interface
+BuildRequires:	python-zope.interface >= 5.0.0
 BuildRequires:	python-zope.testrunner
 %endif
 %endif
@@ -42,11 +42,13 @@ BuildRequires:	python3-setuptools
 #BuildRequires:	python3-ZODB
 BuildRequires:	python3-persistent >= 4.4.3
 BuildRequires:	python3-transaction
-BuildRequires:	python3-zope.interface
+BuildRequires:	python3-zope.interface >= 5.0.0
 BuildRequires:	python3-zope.testrunner
 %endif
 %endif
 %if %{with doc}
+# already installed package
+BuildRequires:	python3-BTrees
 BuildRequires:	python3-repoze.sphinx.autointerface
 BuildRequires:	python3-sphinx_rtd_theme
 BuildRequires:	sphinx-pdg-3 >= 1.8
