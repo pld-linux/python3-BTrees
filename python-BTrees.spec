@@ -13,7 +13,7 @@ Summary(pl.UTF-8):	Skalowalne trwałe kontenery dla obiektów
 Name:		python-%{module}
 # keep 4.x here for python2 support
 Version:	4.11.3
-Release:	2
+Release:	3
 License:	ZPL v2.1
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/BTrees/
