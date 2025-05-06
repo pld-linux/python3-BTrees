@@ -68,10 +68,15 @@ Dokumentacja API modułu Pythona BTrees.
 %setup -q -n btrees-%{version}
 
 %build
-%py3_build %{?with_tests:test}
+%py3_build
+
+%if %{with tests}
+PYTHONPATH=$(echo $(pwd)/build-3/lib.*) \
+zope-testrunner-3 --test-path=src -v
+%endif
 
 %if %{with doc}
-PYTHONPATH=$(pwd):$(echo $(pwd)/build-3/lib.*) \
+PYTHONPATH=$(pwd)/src:$(echo $(pwd)/build-3/lib.*) \
 %{__make} -C docs html \
 	SPHINXBUILD=sphinx-build-3
 %endif
