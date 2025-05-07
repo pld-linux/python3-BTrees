@@ -10,7 +10,7 @@ Summary:	Scalable persistent object containers
 Summary(pl.UTF-8):	Skalowalne trwałe kontenery dla obiektów
 Name:		python3-%{module}
 Version:	6.1
-Release:	1
+Release:	2
 License:	ZPL v2.1
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/btrees/
